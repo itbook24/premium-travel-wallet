@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Wallet - Premium Leather Travel Organizer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: #8B4513;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: #f4f4f4;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #8B4513;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #666;
+        }
+
+        /* Slideshow Styles */
+        .slideshow-container {
+            position: relative;
+            max-width: 500px;
+            margin: 2rem auto;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            aspect-ratio: 1 / 1;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        .slide svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        /* Navigation arrows */
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            margin-top: -22px;
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            background: rgba(0,0,0,0.5);
+            border: none;
+            user-select: none;
+            transition: background 0.3s;
+            border-radius: 0 3px 3px 0;
+            z-index: 10;
+        }
+
+        .prev {
+            left: 0;
+        }
+
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .prev:hover, .next:hover {
+            background: rgba(0,0,0,0.8);
+        }
+
+        /* Dots indicators */
+        .dots-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .dot {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 5px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+
+        .dot.active, .dot:hover {
+            background-color: #8B4513;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #D2691E;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #8B4513;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 60px 0;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            color: #8B4513;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 2rem;
+            background: #f9f9f9;
+            border-radius: 10px;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #D2691E;
+        }
+
+        .feature h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #8B4513;
+        }
+
+        /* Product Images */
+        .product-images {
+            padding: 60px 0;
+            background: #f4f4f4;
+        }
+
+        .images-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .product-img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Specifications */
+        .specs {
+            padding: 60px 0;
+            background: white;
+        }
+
+        .specs-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .specs-list {
+            list-style: none;
+        }
+
+        .specs-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .specs-list strong {
+            color: #8B4513;
+        }
+
+        /* Price Section */
+        .price-section {
+            padding: 60px 0;
+            background: #8B4513;
+            color: white;
+            text-align: center;
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            color: #ccc;
+            font-size: 1.5rem;
+        }
+
+        /* Benefits Section */
+        .benefits {
+            padding: 60px 0;
+            background: #f9f9f9;
+        }
+
+        .benefits-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .benefit-category {
+            margin-bottom: 3rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .benefit-category h3 {
+            color: #8B4513;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #D2691E;
+        }
+
+        .benefit-list {
+            list-style: none;
+        }
+
+        .benefit-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .benefit-list li:before {
+            content: "✓";
+            color: #D2691E;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Who Should Buy Section */
+        .target-audience {
+            padding: 60px 0;
+            background: white;
+        }
+
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .audience-card {
+            background: #f9f9f9;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .audience-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #8B4513;
+        }
+
+        /* Comparison Section */
+        .comparison {
+            padding: 60px 0;
+            background: #f4f4f4;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .comparison-table th {
+            background: #8B4513;
+            color: white;
+            padding: 1rem;
+            text-align: left;
+        }
+
+        .comparison-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .pro {
+            color: #2E8B57;
+            font-weight: bold;
+        }
+
+        .con {
+            color: #DC143C;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .specs-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .price {
+                font-size: 2rem;
+            }
+            
+            .comparison-table {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">Premium Travel Wallet</div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Premium Quality Travel Wallet</h1>
+            <p>Organize all your travel essentials beautifully in one place</p>
+            
+            <!-- Slideshow Container -->
+            <div class="slideshow-container">
+                <!-- Slide 1: Main Product Layout -->
+                <div class="slide active">
+                    <img src="https://i.ibb.co/JFCSWLj3/Passport-wallet-bag-5.jpg?w=500&h=500&fit=crop&crop=center" alt="Travel Wallet Interior Layout" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+
+                <!-- Slide 2: Travel Scene -->
+                <div class="slide">
+                    <img src="https://i.ibb.co/v4H6Ltd8/Passport-wallet-bag-1.jpg?w=500&h=500&fit=crop&crop=center" alt="Travel Scene with Wallet" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+
+                <!-- Slide 3: Size Comparison -->
+                <div class="slide">
+                    <img src="https://i.ibb.co/S40VtRb8/Passport-wallet-bag-2.png?w=500&h=500&fit=crop&crop=center" alt="Wallet Size Comparison" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+
+                <!-- Slide 4: Features Overview -->
+                <div class="slide">
+                    <img src="https://i.ibb.co/SD5GskC4/Passport-wallet-bag-3.png?w=500&h=500&fit=crop&crop=center" alt="Premium Leather Wallet Features" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+
+                <!-- Slide 5: Features Overview -->
+                <div class="slide">
+                    <img src="https://i.ibb.co/wZjNzDsV/Passport-wallet-bag-9.png?w=500&h=500&fit=crop&crop=center" alt="Premium Leather Wallet Features" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+
+                <!-- Navigation arrows -->
+                <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+                <button class="next" onclick="changeSlide(1)">&#10095;</button>
+            </div>
+
+            <!-- Dots for navigation -->
+            <div class="dots-container">
+                <span class="dot active" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+                <span class="dot" onclick="currentSlide(4)"></span>
+                <span class="dot" onclick="currentSlide(5)"></span>
+            </div>
+            
+            <a href="#order" class="btn">Order Now</a>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Special Features</h2>
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-icon">🛂</div>
+                    <h3>Passport Protection</h3>
+                    <p>Secure passport slot with RFID blocking technology</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">💳</div>
+                    <h3>Card Slots</h3>
+                    <p>6 separate card slots and SIM card holder</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">💰</div>
+                    <h3>Cash Storage</h3>
+                    <p>Different compartments for various currencies</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🎫</div>
+                    <h3>Ticket Slot</h3>
+                    <p>Special space for boarding pass and tickets</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🌍</div>
+                    <h3>Premium Leather</h3>
+                    <p>Handmade genuine leather with world map design</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🧲</div>
+                    <h3>Magnetic Closure</h3>
+                    <p>Strong magnetic buckle for security</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="benefits">
+        <div class="container">
+            <h2 class="section-title">Key Benefits & Advantages</h2>
+            <div class="benefits-container">
+                <div class="benefit-category">
+                    <h3>Complete Organization System</h3>
+                    <ul class="benefit-list">
+                        <li><strong>All-in-One Solution:</strong> Keep passports, boarding passes, credit cards, cash, tickets, and SIM cards in one secure place</li>
+                        <li><strong>Quick Access Design:</strong> Find what you need instantly at airports, hotels, or during transit</li>
+                        <li><strong>Stress Reduction:</strong> No more frantic searching through bags during security checks or check-ins</li>
+                        <li><strong>Dedicated Compartments:</strong> 1 passport slot, 4 card slots, 2 SIM slots, 1 cash compartment, 1 ticket slot</li>
+                    </ul>
+                </div>
+
+                <div class="benefit-category">
+                    <h3>Enhanced Security Features</h3>
+                    <ul class="benefit-list">
+                        <li><strong>RFID Blocking Technology:</strong> Protects your credit cards and passport from electronic theft and skimming</li>
+                        <li><strong>Secure Magnetic Closure:</strong> Keeps contents safely enclosed while providing easy access</li>
+                        <li><strong>Anti-Theft Design:</strong> Multiple layers prevent pickpocketing and accidental spills</li>
+                        <li><strong>Document Protection:</strong> Keeps passports flat and prevents bending or damage</li>
+                    </ul>
+                </div>
+
+                <div class="benefit-category">
+                    <h3>Travel-Specific Design Advantages</h3>
+                    <ul class="benefit-list">
+                        <li><strong>International Travel Ready:</strong> Multiple currency compartments for different countries</li>
+                        <li><strong>SIM Card Management:</strong> Store home and destination SIM cards safely</li>
+                        <li><strong>Boarding Pass Accessibility:</strong> Special slot keeps tickets visible and accessible</li>
+                        <li><strong>Compact Yet Spacious:</strong> 11cm closed, 22cm open - perfect for carry-on requirements</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="target-audience">
+        <div class="container">
+            <h2 class="section-title">Who Should Buy This Travel Wallet?</h2>
+            <div class="audience-grid">
+                <div class="audience-card">
+                    <div class="audience-icon">💼</div>
+                    <h3>Frequent Business Travelers</h3>
+                    <p>Keep expense cards, receipts, and travel documents organized with professional appearance</p>
+                </div>
+                <div class="audience-card">
+                    <div class="audience-icon">👨‍👩‍👧‍👦</div>
+                    <h3>Family Vacationers</h3>
+                    <p>Store multiple passports together and keep family boarding passes organized</p>
+                </div>
+                <div class="audience-card">
+                    <div class="audience-icon">🌎</div>
+                    <h3>International Travelers</h3>
+                    <p>Manage different currencies and protect foreign credit cards with RFID blocking</p>
+                </div>
+                <div class="audience-card">
+                    <div class="audience-icon">🎒</div>
+                    <h3>Minimalist Packers</h3>
+                    <p>Replaces multiple wallets and organizers, saves precious luggage space</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="product-images">
+        <div class="container">
+            <h2 class="section-title">Product Images</h2>
+            <div class="images-grid">
+                <img src="https://i.ibb.co/6f2M7wN/Passport-wallet-bag-6.png?w=500&h=500&fit=crop&crop=center" alt="Travel Wallet Interior" class="product-img">
+                <img src="https://i.ibb.co/JFCSWLj3/Passport-wallet-bag-5.jpg?w=500&h=500&fit=crop&crop=center" alt="Travel Wallet Design" class="product-img">
+                <img src="https://i.ibb.co/v4H6Ltd8/Passport-wallet-bag-1.jpg?w=500&h=500&fit=crop&crop=center" alt="Travel Wallet in Use" class="product-img">
+                <img src="https://i.ibb.co/S40VtRb8/Passport-wallet-bag-2.png?w=500&h=500&fit=crop&crop=center" alt="Size Comparison" class="product-img">
+                <img src="https://i.ibb.co/SD5GskC4/Passport-wallet-bag-3.png?w=500&h=500&fit=crop&crop=center" alt="Premium Features" class="product-img">
+                <img src="https://i.ibb.co/wZjNzDsV/Passport-wallet-bag-9.png?w=500&h=500&fit=crop&crop=center" alt="Compact Design" class="product-img">
+            </div>
+        </div>
+    </section>
+
+    <section class="comparison">
+        <div class="container">
+            <h2 class="section-title">Why Choose Our Travel Wallet?</h2>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Regular Wallet</th>
+                        <th>Our Travel Wallet</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Passport Protection</strong></td>
+                        <td class="con">❌ No dedicated slot</td>
+                        <td class="pro">✅ Secure passport slot</td>
+                    </tr>
+                    <tr>
+                        <td><strong>RFID Protection</strong></td>
+                        <td class="con">❌ No blocking</td>
+                        <td class="pro">✅ RFID blocking tech</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Travel Organization</strong></td>
+                        <td class="con">❌ Not optimized</td>
+                        <td class="pro">✅ Travel-specific design</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Multiple Currencies</strong></td>
+                        <td class="con">❌ Single compartment</td>
+                        <td class="pro">✅ Separate currency slots</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ticket Storage</strong></td>
+                        <td class="con">❌ No dedicated slot</td>
+                        <td class="pro">✅ Boarding pass slot</td>
+                    </tr>
+                    <tr>
+                        <td><strong>SIM Card Storage</strong></td>
+                        <td class="con">❌ No storage</td>
+                        <td class="pro">✅ 2 SIM card slots</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="specs">
+        <div class="container">
+            <h2 class="section-title">Detailed Specifications</h2>
+            <div class="specs-content">
+                <div>
+                    <ul class="specs-list">
+                        <li><strong>Material:</strong> Premium PU Leather</li>
+                        <li><strong>Size (Closed):</strong> 11cm / 4.33in</li>
+                        <li><strong>Size (Open):</strong> 22cm / 8.66in</li>
+                        <li><strong>Weight:</strong> Only 180 grams</li>
+                        <li><strong>Color:</strong> Brown with World Map Design</li>
+                        <li><strong>Security Feature:</strong> RFID Blocking Technology</li>
+                    </ul>
+                </div>
+                <div>
+                    <ul class="specs-list">
+                        <li><strong>Passport Slot:</strong> 1 (RFID protected)</li>
+                        <li><strong>Card Slots:</strong> 4 + 2 additional</li>
+                        <li><strong>SIM Slots:</strong> 2 dedicated slots</li>
+                        <li><strong>Cash Compartment:</strong> 1 Large with divider</li>
+                        <li><strong>Ticket Slot:</strong> 1 for boarding passes</li>
+                        <li><strong>Closure System:</strong> Magnetic Buckle</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="price-section" id="order">
+        <div class="container">
+            <h2>Special Limited Time Offer!</h2>
+            <p style="margin-bottom: 1rem; font-size: 1.2rem;">Transform your travel experience today</p>
+            <div class="price">
+                <span class="old-price">$16.99</span>
+                <span style="margin-left: 1rem;">$12.99</span>
+            </div>
+            <p style="margin: 2rem 0; font-size: 1.1rem;"><strong>Free Home Delivery</strong> across Saudi Arabia | 7 business days delivery guaranteed</p>
+            
+            <div style="margin: 2rem 0; background: rgba(255,255,255,0.1); padding: 1.5rem; border-radius: 8px; max-width: 600px; margin: 2rem auto;">
+                <h3 style="margin-bottom: 1rem;">What You Get:</h3>
+                <ul style="list-style: none; text-align: left; display: inline-block;">
+                    <li style="margin-bottom: 0.5rem;">✅ Premium Travel Wallet</li>
+                    <li style="margin-bottom: 0.5rem;">✅ RFID Protection</li>
+                    <li style="margin-bottom: 0.5rem;">✅ Stress-Free Travel Organization</li>
+                    <li style="margin-bottom: 0.5rem;">✅ Professional Appearance</li>
+                    <li>✅ 100% Satisfaction Guarantee</li>
+                </ul>
+            </div>
+            
+            <a href="#" class="btn" onclick="order()" style="font-size: 1.2rem; padding: 18px 40px;">Order Now & Start Organized Travel</a>
+            <p style="margin-top: 1rem; color: rgba(255,255,255,0.9);">Limited stock available at this price!</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p style="margin-bottom: 1rem;">&copy; 2026 Premium Travel Wallet. All rights reserved.</p>
+            <p style="font-size: 0.9rem; color: #ccc;">Perfect for business travelers, vacationers, digital nomads, flight crews, international students, and anyone who wants to travel more organized and less stressed.</p>
+        </div>
+    </footer>
+
+    <script>
+        let slideIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+
+        function showSlide(index) {
+            // Hide all slides
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            // Show current slide
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+        }
+
+        function changeSlide(direction) {
+            slideIndex += direction;
+            
+            if (slideIndex >= slides.length) {
+                slideIndex = 0;
+            } else if (slideIndex < 0) {
+                slideIndex = slides.length - 1;
+            }
+            
+            showSlide(slideIndex);
+        }
+
+        function currentSlide(index) {
+            slideIndex = index - 1;
+            showSlide(slideIndex);
+        }
+
+        // Auto-slide every 5 seconds
+        setInterval(() => {
+            changeSlide(1);
+        }, 5000);
+
+        function order() {
+            alert('Thank you for your interest in Premium Travel Wallet!\n\nTo place your order, please call:\n📞 +1-800-xxx-xxxx\n\nOr visit our website for online ordering.\n\nSpecial Offer: $12.99 (Free Delivery)');
+        }
+
+        // Smooth scroll
+        document.querySelector('a[href="#order"]').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('order').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+
+        // Add smooth scrolling for all anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId !== '#') {
+                    document.querySelector(targetId).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
